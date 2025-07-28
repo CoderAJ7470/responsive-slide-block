@@ -1,0 +1,17 @@
+:root {
+  --deep-orange: #f15c22;
+  --light-orange: #f7931d;
+  --yellow: #ffc840;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(
+    to right,
+    var(--deep-orange),
+    var(--light-orange),
+    var(--yellow)
+  );
+}

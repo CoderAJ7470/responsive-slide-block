@@ -1,5 +1,9 @@
+import SlideBlock from './pages/SlideBlock';
+
+import './styles/common.css';
+
 function App() {
-  return <div>hey what's up just some code ya know</div>;
+  return <SlideBlock />;
 }
 
 export default App;

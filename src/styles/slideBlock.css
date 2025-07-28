@@ -1,0 +1,29 @@
+.slide-block-wrapper {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 100vh;
+}
+
+.image-text {
+  color: white;
+  width: 40%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2rem;
+}
+
+.slider-wrapper img {
+  /* display: block; */
+  width: 100%;
+  /* object-fit: cover; */
+}
+
+/* Media queries */
+@media only screen and (min-width: 900px) {
+  /* change to desktop rules */
+}
