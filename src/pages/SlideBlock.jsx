@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { slideDataArray } from '../helpers/PhotoData';
 
 import '../styles/slideBlock.css';
@@ -22,6 +22,14 @@ const SlideBlock = () => {
     }
   };
 
+  useEffect(() => {
+    const activeDotElement = document.querySelector(`#dot_${slideIndex}`);
+
+    activeDotElement.classList.add('active-dot');
+
+    return () => activeDotElement.classList.remove('active-dot');
+  }, [slideIndex]);
+
   return (
     <div className='slide-block-wrapper'>
       <div className='slide-items'>
@@ -30,6 +38,10 @@ const SlideBlock = () => {
             className='slider-buttons'
             id='prevSlideButton'
             onClick={handleOnClickPrevious}
+            tabIndex={0}
+            aria-label={`Select to go to the previous slide. Currently viewing slide ${
+              slideIndex + 1
+            } of ${slideDataArray.length}`}
           >
             <i className='fa-solid fa-arrow-left slider-button-arrows'></i>
           </button>
@@ -37,6 +49,10 @@ const SlideBlock = () => {
             className='slider-buttons'
             id='nextSlideButton'
             onClick={handleOnClickNext}
+            tabIndex={0}
+            aria-label={`Select to go to the next slide. Currently viewing slide ${
+              slideIndex + 1
+            } of ${slideDataArray.length}`}
           >
             <i className='fa-solid fa-arrow-right slider-button-arrows'></i>
           </button>
@@ -52,7 +68,11 @@ const SlideBlock = () => {
           </button>
         </div>
         <div className='slider-and-dots-wrapper'>
-          <div className='slider-wrapper'>
+          <div
+            className='slider-wrapper'
+            role='application'
+            aria-label='photo slide'
+          >
             {slideDataArray.map((slideDataObject) => (
               <img
                 src={slideDataObject.slide}
@@ -62,9 +82,18 @@ const SlideBlock = () => {
               />
             ))}
           </div>
-          <div className='slide-dots-mobile'>
+          <div className='slide-dots'>
             {slideDataArray.map((_, index) => (
-              <button key={index} onClick={() => setSlideIndex(index)}>
+              <button
+                className='slide-dots-button'
+                key={index}
+                id={`dot_${index}`}
+                onClick={() => setSlideIndex(index)}
+                tabIndex={0}
+                aria-label={`dot ${index + 1}. Showing slide ${
+                  slideIndex + 1
+                } of ${slideDataArray.length}.`}
+              >
                 <i className='fa-solid fa-circle'></i>
               </button>
             ))}

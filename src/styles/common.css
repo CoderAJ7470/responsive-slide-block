@@ -18,7 +18,7 @@ body {
 }
 
 /* Media queries */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 900px) {
   body {
     background-image: linear-gradient(
       to right,

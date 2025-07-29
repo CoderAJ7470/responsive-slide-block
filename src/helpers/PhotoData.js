@@ -15,7 +15,7 @@ export const slideDataArray = [
   {
     key: 'slideTwo',
     slide: slideTwo,
-    heading: 'Communities Helping Families',
+    heading: 'Community Outreach',
     slideText: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nisi
       tempora iste nesciunt illo. Ex recusandae officia impedit. Repellat
       sapiente quidem animi in laborum nisi iure saepe, dolore perferendis
