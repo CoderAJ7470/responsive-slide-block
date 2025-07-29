@@ -2,6 +2,7 @@
   --deep-orange: #f15c22;
   --light-orange: #f7931d;
   --yellow: #ffc840;
+  --deep-blue: #262861;
 }
 
 body {
@@ -9,9 +10,21 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-image: linear-gradient(
-    to right,
+    to bottom,
     var(--deep-orange),
     var(--light-orange),
     var(--yellow)
   );
+}
+
+/* Media queries */
+@media only screen and (min-width: 600px) {
+  body {
+    background-image: linear-gradient(
+      to right,
+      var(--deep-orange),
+      var(--light-orange),
+      var(--yellow)
+    );
+  }
 }

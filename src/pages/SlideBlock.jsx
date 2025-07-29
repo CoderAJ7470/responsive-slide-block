@@ -1,30 +1,75 @@
-import photo1 from '../assets/images/photo_1.jpg';
-// import photo2 from '../assets/images/photo_2.jpg';
+import { useState } from 'react';
+import { slideDataArray } from '../helpers/PhotoData';
 
 import '../styles/slideBlock.css';
 
 const SlideBlock = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const handleOnClickPrevious = () => {
+    if (slideIndex === 0) {
+      setSlideIndex(slideDataArray.length - 1);
+    } else {
+      setSlideIndex(slideIndex - 1);
+    }
+  };
+
+  const handleOnClickNext = () => {
+    if (slideIndex === slideDataArray.length - 1) {
+      setSlideIndex(0);
+    } else {
+      setSlideIndex(slideIndex + 1);
+    }
+  };
+
   return (
     <div className='slide-block-wrapper'>
-      <div className='slider-buttons-wrapper'>
-        <button className='slider-button' id='prevSlideButton'>
-          Prev
-        </button>
-        <button className='slider-button' id='nextSlideButton'>
-          Next
-        </button>
-      </div>
-      <div className='image-text'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nisi
-          tempora iste nesciunt illo. Ex recusandae officia impedit. Repellat
-          sapiente quidem animi in laborum nisi iure saepe, dolore perferendis
-          nemo praesentium sunt, ipsum error eum dolores, magni optio sint
-          mollitia.
-        </p>
-      </div>
-      <div className='slider-wrapper'>
-        <img src={photo1} alt='test photo' />
+      <div className='slide-items'>
+        <div className='slider-buttons-and-text-wrapper'>
+          <button
+            className='slider-buttons'
+            id='prevSlideButton'
+            onClick={handleOnClickPrevious}
+          >
+            <i className='fa-solid fa-arrow-left slider-button-arrows'></i>
+          </button>
+          <button
+            className='slider-buttons'
+            id='nextSlideButton'
+            onClick={handleOnClickNext}
+          >
+            <i className='fa-solid fa-arrow-right slider-button-arrows'></i>
+          </button>
+          <div className='text-wrapper'>
+            <h2 className='image-heading'>
+              {slideDataArray[slideIndex].heading}
+            </h2>
+            <p className='image-text'>{slideDataArray[slideIndex].slideText}</p>
+          </div>
+          <button className='additional-info-button'>
+            {slideDataArray[slideIndex].buttonText}
+            <i className='fa-solid fa-arrow-right arrow-right'></i>
+          </button>
+        </div>
+        <div className='slider-and-dots-wrapper'>
+          <div className='slider-wrapper'>
+            {slideDataArray.map((slideDataObject) => (
+              <img
+                src={slideDataObject.slide}
+                alt={slideDataObject.alt}
+                key={slideDataObject.key}
+                style={{ translate: `${-100 * slideIndex}%` }}
+              />
+            ))}
+          </div>
+          <div className='slide-dots-mobile'>
+            {slideDataArray.map((_, index) => (
+              <button key={index} onClick={() => setSlideIndex(index)}>
+                <i className='fa-solid fa-circle'></i>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
